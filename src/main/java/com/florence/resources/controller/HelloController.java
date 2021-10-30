@@ -1,11 +1,9 @@
-package com.florence.resources.controllers;
+package com.florence.resources.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import com.florence.resources.dto.UserDto;
 import com.florence.resources.po.User;
-import com.florence.resources.services.UserService;
+import com.florence.resources.service.IUserService;
 import com.florence.resources.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -25,7 +23,7 @@ public class HelloController {
 
 
     @Autowired
-    UserService userService;
+    IUserService userService;
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     String hello(UserDto userDto) {

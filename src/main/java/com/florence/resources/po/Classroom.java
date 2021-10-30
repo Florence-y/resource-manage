@@ -1,13 +1,12 @@
 package com.florence.resources.po;
 
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-
 /**
  * <p>
- * 用户表
+ * 课室
  * </p>
  *
  * @author Florence
@@ -15,34 +14,29 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User implements Serializable {
+public class Classroom implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户
+     * 课室名
      */
     private String name;
 
     /**
-     * 用户的角色
+     * 课室大位置
      */
-    private Integer role;
+    private Integer locationFirst;
 
     /**
-     * 学院
+     * 课室小位置
      */
-    private String department;
+    private Integer locationSecond;
 
     /**
-     * 专业
+     * 容量
      */
-    private String major;
-
-    /**
-     * 学号或教师号
-     */
-    private String number;
+    private Integer capacity;
 
 
 }

@@ -1,4 +1,4 @@
-package com.florence.resources.dto;
+package com.florence.resources.po;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 用户表
+ * 校园新闻
  * </p>
  *
  * @author Florence
@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class UserDto implements Serializable {
+public class CampusNews implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,24 +25,14 @@ public class UserDto implements Serializable {
     private String name;
 
     /**
-     * 用户的角色
+     * 图片的url
      */
-    private Integer role;
+    private String imgUrl;
 
     /**
-     * 学院
+     * 跳转的url
      */
-    private String department;
-
-    /**
-     * 专业
-     */
-    private String major;
-
-    /**
-     * 学号或教师号
-     */
-    private String number;
+    private String forwardUrl;
 
 
 }
