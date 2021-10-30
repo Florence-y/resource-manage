@@ -44,6 +44,7 @@ public class CommonCodeGen {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("Florence");
         gc.setOpen(true);
+        gc.setFileOverride(true);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
 
@@ -131,10 +132,17 @@ public class CommonCodeGen {
         // 公共父类
 //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
-        strategy.setSuperEntityColumns("id");
+//        strategy.setSuperEntityColumns("id");
         //表名
         strategy.setInclude(new String[]{
-                "user"});
+                "user",
+                "resource_right_to_audit",
+                "resource",
+                "resource_change",
+                "reimbursement",
+                "classroom_present_request",
+                "classroom",
+                "campus_news"});
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
