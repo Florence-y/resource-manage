@@ -19,6 +19,7 @@ public class UserServiceTest {
                 .setName("吴彦臻")
                 .setNumber("191541227")
                 .setDepartment("学生组")
+                .setPassword("qq123456")
                 .setRole(3);
         boolean save = userService.save(user);
 //        User user = userService.getById(1);
