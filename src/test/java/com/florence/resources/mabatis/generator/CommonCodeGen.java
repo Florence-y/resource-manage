@@ -135,14 +135,7 @@ public class CommonCodeGen {
 //        strategy.setSuperEntityColumns("id");
         //表名
         strategy.setInclude(new String[]{
-                "user",
-                "resource_right_to_audit",
-                "resource",
-                "resource_change",
-                "reimbursement",
-                "classroom_present_request",
-                "classroom",
-                "campus_news"});
+                "user"});
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
