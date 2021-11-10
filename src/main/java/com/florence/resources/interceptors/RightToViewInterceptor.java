@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 /**
  * @author wuyanzhen
@@ -17,10 +19,14 @@ public class RightToViewInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        log.info("访问到拦截器");
-
-        return true;
+        HttpSession session = request.getSession();
+        System.out.println(session.getId());
+        if (session != null && session.getAttribute("number") != null) {
+            log.info("已登录");
+            return true;
+        }
+        log.info("未登录");
+        return false;
     }
 
     @Override
