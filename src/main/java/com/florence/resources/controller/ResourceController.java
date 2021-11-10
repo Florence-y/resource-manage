@@ -43,7 +43,7 @@ public class ResourceController {
         return page;
     }
 
-    @RequestMapping(value = "/list",produces = "application/json",method = RequestMethod.GET)
+    @RequestMapping(value = "/listByCondition",produces = "application/json",method = RequestMethod.GET)
      Page<Resource> listByCondition(Resource resource, @RequestParam("current") Long current, @RequestParam("size") Long size){
         Wrapper<Resource> resourceDtoQueryWrapper = new QueryWrapper<>(resource);
         Page<Resource> page = new Page<>(current, size);
