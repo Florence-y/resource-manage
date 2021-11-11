@@ -19,8 +19,8 @@ public class RightToViewInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        log.info(session.getId());
         if (session != null && session.getAttribute("number") != null) {
+            log.info(session.getId());
             return true;
         }
         log.info("未登录");
