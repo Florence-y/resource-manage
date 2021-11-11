@@ -64,4 +64,8 @@ public class Resource implements Serializable {
     private LocalDateTime effectEndTime;
 
 
+    /**
+     * 资源的数量
+     */
+    private Integer type;
 }

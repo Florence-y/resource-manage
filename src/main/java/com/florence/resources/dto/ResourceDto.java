@@ -54,4 +54,10 @@ public class ResourceDto implements Serializable {
      * 图片描述
      */
     private String img;
+
+
+    /**
+     * 资源的数量
+     */
+    private Integer type;
 }

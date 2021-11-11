@@ -34,8 +34,7 @@ public class ResourceChangeController {
     @RequestMapping(value = "/add",method = RequestMethod.POST,produces = "application/json")
     ResponseStat<ResourceChange> save(@RequestBody ResourceChange resourceChange, HttpServletRequest httpServletRequest){
         Object userId = SessionUtil.getSessionAttribute(httpServletRequest, "userId");
-        Boolean notBlank = Objects.isNull(userId);
-        if (notBlank){
+        if (Objects.isNull(userId)){
             return ResponseStatHelper.error("未登录");
         }
         resourceChange.setUserId((Long) userId);
