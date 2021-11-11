@@ -39,7 +39,7 @@ public class UserController {
         if (one!=null){
             log.info("学号：{}，密码：{},登录成功",user.getNumber(),user.getPassword());
             SessionUtil.setSessionAttribute(request,"number",user.getNumber());
-            return ResponseStatHelper.success("登录成功");
+            return ResponseStatHelper.success("登录成功",one);
         }
         log.info("学号：{}，密码：{},登录失败",user.getNumber(),user.getPassword());
         return ResponseStatHelper.error("登录失败");

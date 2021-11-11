@@ -20,7 +20,6 @@ public class RightToViewInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        System.out.println(session.getId());
         if (session != null && session.getAttribute("number") != null) {
             log.info("已登录");
             return true;
@@ -31,11 +30,9 @@ public class RightToViewInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        log.info("postHandle");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        log.info("afterCompletion");
     }
 }

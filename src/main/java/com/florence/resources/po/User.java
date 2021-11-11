@@ -60,4 +60,8 @@ public class User implements Serializable {
     private String number;
 
 
+    /**
+     * 头像
+     */
+    private String avatar;
 }

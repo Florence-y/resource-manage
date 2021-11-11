@@ -44,5 +44,8 @@ public class UserDto implements Serializable {
      */
     private String number;
 
-
+    /**
+     * 头像
+     */
+    private String avatar;
 }
