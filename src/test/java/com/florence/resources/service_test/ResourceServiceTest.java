@@ -20,6 +20,7 @@ public class ResourceServiceTest {
         for (int i=0;i<10;i++) {
             Resource resource = new Resource();
             resource.setAmount(100L);
+            resource.setType(0);
             resource.setDescription("用于社团开展活动");
             resource.setEffectStartTime(LocalDateTime.now());
             resource.setEffectEndTime(LocalDateTime.now().plusDays(7));
@@ -27,6 +28,18 @@ public class ResourceServiceTest {
             resource.setName("音响");
             service.save(resource);
         }
+        for (int i=0;i<10;i++) {
+            Resource resource = new Resource();
+            resource.setAmount(100L);
+            resource.setDescription("用于组织开会缺人的时候");
+            resource.setType(1);
+            resource.setEffectStartTime(LocalDateTime.now());
+            resource.setEffectEndTime(LocalDateTime.now().plusDays(7));
+            resource.setUserId(1L);
+            resource.setName("椅子");
+            service.save(resource);
+        }
+
     }
 
     @Test

@@ -1,7 +1,6 @@
 package com.florence.resources.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.florence.resources.common.reply.ResponseStat;
 import com.florence.resources.common.reply.ResponseStatHelper;
 import com.florence.resources.po.User;
@@ -26,35 +25,28 @@ import java.util.Objects;
  * @since 2021-10-31
  */
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 @Slf4j
 public class UserController {
-
 
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "/login", produces = "application/json", method = RequestMethod.POST)
-    ResponseStat<User> login(@RequestBody User user, HttpServletRequest request) {
-        User one = userService.getOne(new QueryWrapper<>(user));
-        if (one != null) {
-            log.info("学号：{}，密码：{},登录成功", user.getNumber(), user.getPassword());
-            SessionUtil.setSessionAttribute(request, "number", one.getNumber());
-            SessionUtil.setSessionAttribute(request, "userId", one.getId());
-            return ResponseStatHelper.success("登录成功", one);
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    ResponseStat<User> update(@RequestBody User user, HttpServletRequest request) {
+        if (!Objects.isNull(user)) {
+            Object userId = SessionUtil.getSessionAttribute(request, "userId");
+            if (Objects.isNull(userId)){
+                return ResponseStatHelper.error("未登录");
+            }
+            user.setId((Long) userId);
+            log.info(user.toString());
+            boolean save = userService.updateById(user);
+            return save ? ResponseStatHelper.success("修改成功", user)
+                    : ResponseStatHelper.error("个人信息修改失败（信息填写错误）");
         }
-        log.info("学号：{}，密码：{},登录失败", user.getNumber(), user.getPassword());
-        return ResponseStatHelper.error("登录失败");
+        return ResponseStatHelper.error("个人信息修改错误（未知错误）");
     }
 
-    @RequestMapping(value = "/islogin", produces = "application/json", method = RequestMethod.GET)
-    ResponseStat<User> isLogin(HttpServletRequest request) {
-        Long number = (Long) SessionUtil.getSessionAttribute(request, "userId");
-        if (!Objects.isNull(number)) {
-            User userInf = userService.getById(number);
-            return ResponseStatHelper.success("已登录", userInf);
-        }
-        return ResponseStatHelper.error("未登录");
-    }
 
 }
