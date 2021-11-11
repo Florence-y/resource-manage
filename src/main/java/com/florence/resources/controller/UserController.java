@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * <p>
@@ -44,6 +45,16 @@ public class UserController {
         }
         log.info("学号：{}，密码：{},登录失败",user.getNumber(),user.getPassword());
         return ResponseStatHelper.error("登录失败");
+    }
+
+    @RequestMapping(value = "/islogin",produces = "application/json",method = RequestMethod.GET )
+    ResponseStat<User> isLogin(HttpServletRequest request){
+        Long number = (Long) SessionUtil.getSessionAttribute(request, "userId");
+        if (!Objects.isNull(number)){
+            User userInf = userService.getById(number);
+            return ResponseStatHelper.success("已登录",userInf);
+        }
+        return  ResponseStatHelper.error("未登录");
     }
 
 }
