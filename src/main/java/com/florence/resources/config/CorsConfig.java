@@ -19,6 +19,7 @@ public class CorsConfig implements WebMvcConfigurer {
                 //设置放行哪些原始域   SpringBoot2.4.4下低版本使用.allowedOrigins("*")
                 .allowedOriginPatterns("http://localhost:8080")
                 .allowedOriginPatterns("http://localhost:8081")
+                .allowedOriginPatterns("http://localhost:8082")
                 //放行哪些请求方式
                 .allowedMethods(new String[]{"GET", "POST", "PUT", "DELETE"})
                 //.allowedMethods("*") //或者放行全部
