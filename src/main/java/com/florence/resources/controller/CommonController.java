@@ -23,7 +23,6 @@ public class CommonController {
             // 文件名
             String fileName = file.getOriginalFilename();
             String uploadFilePath = UploadUtils.getJarRootPath();
-            log.info(uploadFilePath);
             File dest = new File(uploadFilePath +'/'+ fileName);
             try {
                 file.transferTo(dest);

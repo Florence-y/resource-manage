@@ -63,4 +63,8 @@ public class ResourceChange implements Serializable {
     private String statusDescription;
 
 
+    /**
+     * 证明图片
+     */
+    private String img;
 }

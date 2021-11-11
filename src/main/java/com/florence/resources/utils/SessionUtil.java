@@ -15,4 +15,10 @@ public class SessionUtil {
         HttpSession session = httpRequest.getSession();
         session.setAttribute(key,value);
     }
+
+
+    public static Object getSessionAttribute(HttpServletRequest httpRequest,String key){
+        HttpSession session = httpRequest.getSession();
+        return session.getAttribute(key);
+    }
 }
