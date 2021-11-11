@@ -50,5 +50,8 @@ public class ResourceDto implements Serializable {
      */
     private LocalDateTime effectEndTime;
 
-
+    /**
+     * 图片描述
+     */
+    private String img;
 }

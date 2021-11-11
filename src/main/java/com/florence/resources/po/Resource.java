@@ -42,6 +42,12 @@ public class Resource implements Serializable {
      */
     private String description;
 
+
+    /**
+     * 图片描述
+     */
+    private String img;
+
     /**
      * 资源的数量
      */
