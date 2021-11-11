@@ -14,11 +14,11 @@ public class UploadUtils {
     public static String getJarRootPath() {
         File path = null;
         try {
-            path = new File(ResourceUtils.getURL("classpath:static").getPath().replace("%20"," ").replace('/', '\\'));
+            path = new File(ResourceUtils.getURL("classpath:static").getPath().replace("%20", " ").replace('/', '\\'));
         } catch (FileNotFoundException e) {
-            log.error("获取当前运行目录失败",e);
+            log.error("获取当前运行目录失败", e);
         }
-        if(!path.exists()) {
+        if (!path.exists()) {
             path = new File("");
         }
         //如果上传目录为/static/img/，则可以如下获取：

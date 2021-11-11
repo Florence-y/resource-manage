@@ -1,7 +1,5 @@
 package com.florence.resources.utils;
 
-import cn.hutool.http.HttpRequest;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,13 +9,13 @@ import javax.servlet.http.HttpSession;
 public class SessionUtil {
 
 
-    public static void setSessionAttribute(HttpServletRequest httpRequest,String key,Object value){
+    public static void setSessionAttribute(HttpServletRequest httpRequest, String key, Object value) {
         HttpSession session = httpRequest.getSession();
-        session.setAttribute(key,value);
+        session.setAttribute(key, value);
     }
 
 
-    public static Object getSessionAttribute(HttpServletRequest httpRequest,String key){
+    public static Object getSessionAttribute(HttpServletRequest httpRequest, String key) {
         HttpSession session = httpRequest.getSession();
         return session.getAttribute(key);
     }

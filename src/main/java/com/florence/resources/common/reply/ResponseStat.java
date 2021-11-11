@@ -12,11 +12,13 @@ public class ResponseStat<T> {
     private String message;
     private T data;
     private String code;
-    public ResponseStat(String message,String code){
+
+    public ResponseStat(String message, String code) {
         this.message = message;
         this.code = code;
     }
-    public ResponseStat(String message,String code,T data){
+
+    public ResponseStat(String message, String code, T data) {
         this.message = message;
         this.code = code;
         this.data = data;

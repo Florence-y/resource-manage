@@ -3,7 +3,6 @@ package com.florence.resources.dto;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,14 +15,14 @@ public class Page<T> implements IPage<T> {
     private Long pageSize;
     private Long total;
     private Long pageCount;
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private final List<OrderItem> orderItems = new ArrayList<>();
 
     public Page(Long curPage, Long pageSize) {
         this.curPage = curPage;
         this.pageSize = pageSize;
     }
 
-    public Page(){
+    public Page() {
 
     }
 
@@ -39,8 +38,8 @@ public class Page<T> implements IPage<T> {
 
     @Override
     public IPage<T> setRecords(List<T> records) {
-        data= records;
-        return this ;
+        data = records;
+        return this;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class Page<T> implements IPage<T> {
 
     @Override
     public IPage<T> setTotal(long total) {
-        this.total=total;
+        this.total = total;
         return this;
     }
 
@@ -61,7 +60,7 @@ public class Page<T> implements IPage<T> {
 
     @Override
     public IPage<T> setSize(long size) {
-        this.pageSize=size;
+        this.pageSize = size;
         return this;
     }
 

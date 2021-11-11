@@ -18,18 +18,18 @@ import java.io.File;
 public class CommonController {
 
 
-    @RequestMapping(value = "/upload",method = RequestMethod.POST,produces = "application/json")
-    public String httpUpload(@RequestPart MultipartFile file){
-            // 文件名
-            String fileName = file.getOriginalFilename();
-            String uploadFilePath = UploadUtils.getJarRootPath();
-            File dest = new File(uploadFilePath +'/'+ fileName);
-            try {
-                file.transferTo(dest);
-            } catch (Exception e) {
-                log.error("文件转换失败",e);
-                return "ERROR";
-            }
+    @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
+    public String httpUpload(@RequestPart MultipartFile file) {
+        // 文件名
+        String fileName = file.getOriginalFilename();
+        String uploadFilePath = UploadUtils.getJarRootPath();
+        File dest = new File(uploadFilePath + '/' + fileName);
+        try {
+            file.transferTo(dest);
+        } catch (Exception e) {
+            log.error("文件转换失败", e);
+            return "ERROR";
+        }
         return fileName;
     }
 

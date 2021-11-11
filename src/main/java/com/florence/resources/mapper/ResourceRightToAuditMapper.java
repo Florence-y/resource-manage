@@ -1,7 +1,7 @@
 package com.florence.resources.mapper;
 
-import com.florence.resources.po.ResourceRightToAudit;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.florence.resources.po.ResourceRightToAudit;
 
 /**
  * <p>

@@ -2,7 +2,6 @@ package com.florence.resources.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,5 +15,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/resources/campus-news")
 public class CampusNewsController {
-    
+
 }

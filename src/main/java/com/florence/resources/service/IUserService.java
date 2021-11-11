@@ -1,7 +1,7 @@
 package com.florence.resources.service;
 
-import com.florence.resources.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.florence.resources.po.User;
 
 /**
  * <p>
