@@ -16,10 +16,7 @@ import com.florence.resources.utils.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -89,7 +86,7 @@ public class ResourceChangeController {
 
 
     @RequestMapping(value = "/listToExamine", method = RequestMethod.GET, produces = "application/json")
-    Page<ResourceChangeDto> listToExamine(Page<ResourceChange> page, HttpServletRequest request){
+    Page<ResourceChangeDto> listToExamine(Page<ResourceChange> page, HttpServletRequest request,@RequestParam("status") Integer status){
         List<User> userList = userService.list();
         HashMap<Long, String> userIdMapNumber = new HashMap<>();
         userList.forEach((user -> {
@@ -107,6 +104,9 @@ public class ResourceChangeController {
         if (!resourceIds.isEmpty()){
             QueryWrapper<ResourceChange> resourceChangeCondition = new QueryWrapper<>();
             resourceChangeCondition.in("resource_id",resourceIds);
+            if (!Objects.isNull(status)){
+                resourceChangeCondition.eq("status",status);
+            }
             resourceChangeService.page(page,resourceChangeCondition);
         }
         //任何资源不属于他
