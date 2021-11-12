@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -47,6 +48,9 @@ public class UserController {
         }
         return ResponseStatHelper.error("个人信息修改错误（未知错误）");
     }
-
-
+    @RequestMapping(value = "/list",method = RequestMethod.GET,produces = "application/json")
+    ResponseStat<List<User>> list(){
+        List<User> list = userService.list();
+        return ResponseStatHelper.success("查找用户成功",list);
+    }
 }
