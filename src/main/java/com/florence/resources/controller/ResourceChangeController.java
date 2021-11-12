@@ -63,7 +63,6 @@ public class ResourceChangeController {
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
     Page<ResourceChangeDto> list(Page<ResourceChange> page,HttpServletRequest request){
         QueryWrapper<ResourceChange> condition = new QueryWrapper<>();
-        log.info(String.valueOf(SessionUtil.getSessionAttribute(request,"userId")));
         condition.eq("user_Id", SessionUtil.getSessionAttribute(request,"userId"));
         resourceChangeService.page(page,condition);
         Page<ResourceChangeDto> pageDto = new Page<>();
