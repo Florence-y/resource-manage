@@ -6,9 +6,12 @@ import com.florence.resources.common.reply.ResponseStat;
 import com.florence.resources.common.reply.ResponseStatHelper;
 import com.florence.resources.dto.Page;
 import com.florence.resources.dto.ResourceChangeDto;
+import com.florence.resources.po.Resource;
 import com.florence.resources.po.ResourceChange;
+import com.florence.resources.po.User;
 import com.florence.resources.service.IResourceChangeService;
 import com.florence.resources.service.IResourceService;
+import com.florence.resources.service.IUserService;
 import com.florence.resources.utils.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -21,8 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -43,6 +48,9 @@ public class ResourceChangeController {
 
     @Autowired
     IResourceService resourceService;
+    
+    @Autowired
+    IUserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     ResponseStat<ResourceChange> save(@RequestBody ResourceChange resourceChange, HttpServletRequest httpServletRequest) {
@@ -73,6 +81,47 @@ public class ResourceChangeController {
             ResourceChangeDto resourceChangeDto = poConvert(recode);
             //设置请求者学号
             resourceChangeDto.setUserNumber((String) SessionUtil.getSessionAttribute(request, "number"));
+            resourceChangeDtos.add(resourceChangeDto);
+        });
+        pageDto.setRecords(resourceChangeDtos);
+        return pageDto;
+    }
+
+
+    @RequestMapping(value = "/listToExamine", method = RequestMethod.GET, produces = "application/json")
+    Page<ResourceChangeDto> listToExamine(Page<ResourceChange> page, HttpServletRequest request){
+        List<User> userList = userService.list();
+        HashMap<Long, String> userIdMapNumber = new HashMap<>();
+        userList.forEach((user -> {
+            userIdMapNumber.put(user.getId(),user.getNumber());
+        }));
+        Object userId = SessionUtil.getSessionAttribute(request, "userId");
+        if (Objects.isNull(userId)){
+            log.error("未登录");
+        }
+        QueryWrapper<Resource> resourceCondition = new QueryWrapper<>();
+        resourceCondition.eq("user_id",userId);
+
+        List<Resource> list = resourceService.list(resourceCondition);
+        List<Long> resourceIds = list.stream().map(Resource::getId).collect(Collectors.toList());
+        if (!resourceIds.isEmpty()){
+            QueryWrapper<ResourceChange> resourceChangeCondition = new QueryWrapper<>();
+            resourceChangeCondition.in("resource_id",resourceIds);
+            resourceChangeService.page(page,resourceChangeCondition);
+        }
+        //任何资源不属于他
+        else{
+            return new Page<>(page.getCurrent(),page.getSize());
+        }
+
+        Page<ResourceChangeDto> pageDto = new Page<>();
+        BeanUtils.copyProperties(page, pageDto);
+        List<ResourceChangeDto> resourceChangeDtos = new ArrayList<>();
+        //po转化dto
+        page.getRecords().forEach((recode) -> {
+            ResourceChangeDto resourceChangeDto = poConvert(recode);
+            //设置请求者学号
+            resourceChangeDto.setUserNumber(userIdMapNumber.get(resourceChangeDto.getUserId()));
             resourceChangeDtos.add(resourceChangeDto);
         });
         pageDto.setRecords(resourceChangeDtos);
