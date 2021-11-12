@@ -1,5 +1,7 @@
 package com.florence.resources.dto;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,6 +21,9 @@ public class ClassroomDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
     /**
      * 课室名
      */

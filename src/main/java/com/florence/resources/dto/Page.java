@@ -2,6 +2,7 @@ package com.florence.resources.dto;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * @author wuyanzhen
  */
+@ToString
 public class Page<T> implements IPage<T> {
     private List<T> data;
     private Long curPage;
