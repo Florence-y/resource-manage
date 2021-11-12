@@ -41,6 +41,12 @@ public class ReimbursementController {
         return save ? ResponseStatHelper.success("申请成功") : ResponseStatHelper.error("申请失败");
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    ResponseStat<Reimbursement> update(@RequestBody Reimbursement reimbursement, HttpServletRequest request) {
+        boolean save = reimbursementService.updateById(reimbursement);
+        return save ? ResponseStatHelper.success("操作成功") : ResponseStatHelper.error("操作失败");
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
     Page<ReimbursementDto> list(Page<Reimbursement> page, HttpServletRequest request, @RequestParam("status") Integer status) {
         if (!Objects.isNull(status)){

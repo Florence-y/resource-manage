@@ -128,6 +128,14 @@ public class ResourceChangeController {
         return pageDto;
     }
 
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json")
+    ResponseStat<ResourceChange> update(@RequestBody ResourceChange resourceChange, HttpServletRequest request) {
+        boolean save = resourceChangeService.updateById(resourceChange);
+        return save ? ResponseStatHelper.success("操作成功") : ResponseStatHelper.error("操作失败");
+    }
+
+
     private ResourceChangeDto poConvert(ResourceChange recode) {
         ResourceChangeDto resourceChangeDto = new ResourceChangeDto();
         BeanUtils.copyProperties(recode, resourceChangeDto);
