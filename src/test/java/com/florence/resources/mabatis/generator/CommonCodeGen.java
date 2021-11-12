@@ -22,7 +22,7 @@ public class CommonCodeGen {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
+        System.out.println(help);
         if (scanner.hasNext()) {
             String ipt = scanner.next();
             if (StringUtils.isNotBlank(ipt)) {
@@ -34,7 +34,7 @@ public class CommonCodeGen {
 
 
     @Test
-    public void codeGen(){
+    public void codeGen() {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
@@ -134,8 +134,7 @@ public class CommonCodeGen {
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
         //表名
-        strategy.setInclude(new String[]{
-                "user"});
+        strategy.setInclude("user");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

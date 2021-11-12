@@ -12,12 +12,12 @@ import java.util.List;
  */
 @ToString
 public class Page<T> implements IPage<T> {
+    private final List<OrderItem> orderItems = new ArrayList<>();
     private List<T> data;
     private Long curPage;
     private Long pageSize;
     private Long total;
     private Long pageCount;
-    private final List<OrderItem> orderItems = new ArrayList<>();
 
     public Page(Long curPage, Long pageSize) {
         this.curPage = curPage;

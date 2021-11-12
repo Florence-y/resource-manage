@@ -16,8 +16,8 @@ public class ResourceServiceTest {
     IResourceService service;
 
     @Test
-    public void addResource(){
-        for (int i=0;i<10;i++) {
+    public void addResource() {
+        for (int i = 0; i < 10; i++) {
             Resource resource = new Resource();
             resource.setAmount(100L);
             resource.setType(0);
@@ -28,7 +28,7 @@ public class ResourceServiceTest {
             resource.setName("音响");
             service.save(resource);
         }
-        for (int i=0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             Resource resource = new Resource();
             resource.setAmount(100L);
             resource.setDescription("用于组织开会缺人的时候");
@@ -43,10 +43,10 @@ public class ResourceServiceTest {
     }
 
     @Test
-    public void testPage(){
+    public void testPage() {
         Page<Resource> resourcePage = new Page<>(2L, 2L);
         service.page(resourcePage);
-        for (Resource resource:resourcePage.getRecords()){
+        for (Resource resource : resourcePage.getRecords()) {
             System.out.println(resource);
         }
     }

@@ -36,7 +36,7 @@ public class UserController {
     ResponseStat<User> update(@RequestBody User user, HttpServletRequest request) {
         if (!Objects.isNull(user)) {
             Object userId = SessionUtil.getSessionAttribute(request, "userId");
-            if (Objects.isNull(userId)){
+            if (Objects.isNull(userId)) {
                 return ResponseStatHelper.error("未登录");
             }
             user.setId((Long) userId);

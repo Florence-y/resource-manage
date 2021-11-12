@@ -24,6 +24,9 @@ import java.util.Objects;
 public class CommonController {
 
 
+    @Autowired
+    IUserService userService;
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "application/json")
     public String httpUpload(@RequestPart MultipartFile file) {
         // 文件名
@@ -38,10 +41,6 @@ public class CommonController {
         }
         return fileName;
     }
-
-
-    @Autowired
-    IUserService userService;
 
     @RequestMapping(value = "/login", produces = "application/json", method = RequestMethod.POST)
     ResponseStat<User> login(@RequestBody User user, HttpServletRequest request) {

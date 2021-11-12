@@ -14,7 +14,7 @@ public class UserServiceTest {
     IUserService userService;
 
     @Test
-    public void insertUser(){
+    public void insertUser() {
         User user = new User()
                 .setName("吴彦臻")
                 .setNumber("191541227")

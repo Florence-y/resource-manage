@@ -61,18 +61,18 @@ public class ResourceChangeController {
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    Page<ResourceChangeDto> list(Page<ResourceChange> page,HttpServletRequest request){
+    Page<ResourceChangeDto> list(Page<ResourceChange> page, HttpServletRequest request) {
         QueryWrapper<ResourceChange> condition = new QueryWrapper<>();
-        condition.eq("user_Id", SessionUtil.getSessionAttribute(request,"userId"));
-        resourceChangeService.page(page,condition);
+        condition.eq("user_Id", SessionUtil.getSessionAttribute(request, "userId"));
+        resourceChangeService.page(page, condition);
         Page<ResourceChangeDto> pageDto = new Page<>();
-        BeanUtils.copyProperties(page,pageDto);
+        BeanUtils.copyProperties(page, pageDto);
         List<ResourceChangeDto> resourceChangeDtos = new ArrayList<>();
         //po转化dto
-        page.getRecords().forEach((recode)->{
+        page.getRecords().forEach((recode) -> {
             ResourceChangeDto resourceChangeDto = poConvert(recode);
             //设置请求者学号
-            resourceChangeDto.setUserNumber((String) SessionUtil.getSessionAttribute(request,"number"));
+            resourceChangeDto.setUserNumber((String) SessionUtil.getSessionAttribute(request, "number"));
             resourceChangeDtos.add(resourceChangeDto);
         });
         pageDto.setRecords(resourceChangeDtos);
@@ -81,7 +81,7 @@ public class ResourceChangeController {
 
     private ResourceChangeDto poConvert(ResourceChange recode) {
         ResourceChangeDto resourceChangeDto = new ResourceChangeDto();
-        BeanUtils.copyProperties(recode,resourceChangeDto);
+        BeanUtils.copyProperties(recode, resourceChangeDto);
         String name = resourceService.getById(recode.getResourceId()).getName();
         resourceChangeDto.setResourceName(name);
         return resourceChangeDto;
