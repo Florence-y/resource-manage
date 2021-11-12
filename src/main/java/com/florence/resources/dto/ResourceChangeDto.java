@@ -68,6 +68,11 @@ public class ResourceChangeDto implements Serializable {
     private Integer status;
 
     /**
+     * 图片描述
+     */
+    private String img;
+
+    /**
      * 审核描述
      */
     private String statusDescription;
