@@ -50,25 +50,25 @@ public class ReimbursementDto implements Serializable {
      */
     private String payDetail;
 
+
     /**
-     * 证明材料类型
+     * 操作这个资源的用户ID
      */
-    private Integer proveType;
+    private String userNumber;
 
     /**
      * 证明材料的具体信息
      */
     private String proveDetail;
-
     /**
      * 具体的开始时间点
      */
     private LocalDateTime eventStartTime;
 
-    /**
-     * 具体的结束时间点
-     */
-    private LocalDateTime eventEndTime;
 
+    /**
+     * 审核状态
+     */
+    private Integer status;
 
 }

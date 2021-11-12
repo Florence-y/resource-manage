@@ -53,10 +53,6 @@ public class Reimbursement implements Serializable {
      */
     private String payDetail;
 
-    /**
-     * 证明材料类型
-     */
-    private Integer proveType;
 
     /**
      * 证明材料的具体信息
@@ -69,9 +65,7 @@ public class Reimbursement implements Serializable {
     private LocalDateTime eventStartTime;
 
     /**
-     * 具体的结束时间点
+     * 审核状态
      */
-    private LocalDateTime eventEndTime;
-
-
+    private Integer status;
 }
