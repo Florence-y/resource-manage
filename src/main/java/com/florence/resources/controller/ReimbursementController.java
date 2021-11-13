@@ -48,7 +48,7 @@ public class ReimbursementController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, produces = "application/json")
-    Page<ReimbursementDto> list(Page<Reimbursement> page, HttpServletRequest request, @RequestParam("status") Integer status) {
+    Page<ReimbursementDto> list(Page<Reimbursement> page, HttpServletRequest request, @RequestParam(value = "status",required = false) Integer status) {
         if (!Objects.isNull(status)){
             QueryWrapper<Reimbursement> condition = new QueryWrapper<>();
             condition.eq("status",status);
